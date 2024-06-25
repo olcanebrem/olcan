@@ -1,16 +1,39 @@
-<!-- file-upload-example/public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflare API Response</title>
 </head>
 <body>
-    <h1>File Upload Example</h1>
-    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Upload File">
-    </form>
+  <div id="app">
+    <h1>Cloudflare API Response</h1>
+    <pre id="response"></pre>
+  </div>
+
+  <!-- Axios kütüphanesi için CDN bağlantısı -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- JavaScript kodları -->
+  <script>
+    // Cloudflare API endpoint'i
+    const apiUrl = 'https://api.cloudflare.com/client/v4/ips';
+
+    // Cloudflare API isteği
+    axios.get(apiUrl, {
+      headers: {
+        'Authorization': 'Bearer YOUR_API_TOKEN',  // Cloudflare API anahtarınız buraya gelecek
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      // API'den gelen veriyi HTML içinde gösterme
+      document.getElementById('response').innerText = JSON.stringify(response.data, null, 2);
+    })
+    .catch(error => {
+      // Hata durumunda hata mesajını gösterme
+      document.getElementById('response').innerText = 'Error fetching Cloudflare IPs: ' + error.message;
+    });
+  </script>
 </body>
 </html>

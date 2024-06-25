@@ -1,2 +1,5 @@
-get http://localhost:8000/
+post http://localhost:8000/upload
 
+
+root@37.140.242.81's password:
+ToQ6Ng0Vje
