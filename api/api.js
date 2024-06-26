@@ -1,18 +1,27 @@
-const axios = require('axios');
-
-// Cloudflare API endpoint'i
+// Bir API URL'si tanımlayalım
 const apiUrl = 'https://api.cloudflare.com/client/v4/ips';
 
-// Cloudflare API isteği
-axios.get(apiUrl, {
-  headers: {
-    'Authorization': 'Bearer YOUR_API_TOKEN',  // Cloudflare API anahtarınız buraya gelecek
-    'Content-Type': 'application/json'
-  }
-})
-.then(response => {
-  console.log('Cloudflare IPs:', response.data);
-})
-.catch(error => {
-  console.error('Error fetching Cloudflare IPs:', error);
-});
+// GET isteği gönderen bir fonksiyon yazalım
+function getPost() {
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Ağ yanıtı uygun değil');
+      }
+      return response.json(); // JSON formatında yanıtı al
+    })
+    .then(data => {
+      console.log('Veri başarıyla alındı:', data); // Alınan veriyi işle
+      // Veriyi HTML içinde görüntüleme
+      const postTitle = document.getElementById('post-title');
+      const postBody = document.getElementById('post-body');
+      postTitle.textContent = data.title;
+      postBody.textContent = data.body;
+    })
+    .catch(error => {
+      console.error('Veri alınırken bir hata oluştu:', error); // Hataları yakala ve işle
+    });
+}
+
+// Fonksiyonu sayfa yüklendiğinde çalıştır
+document.addEventListener('DOMContentLoaded', getPost);
