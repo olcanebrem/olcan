@@ -1,39 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloudflare API Response</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Olcan EBREM</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
-<body>
-  <div id="app">
-    <h1>Cloudflare API Response</h1>
-    <pre id="response"></pre>
-  </div>
+<body style="height:100vh;width:100%;margin:0;padding:0">
 
-  <!-- Axios kütüphanesi için CDN bağlantısı -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<iframe width='100%' height='100%' src='https://docs.google.com/presentation/d/1DD4WGskgzoJVCnpYFkKsFmj6ypPjcEkO/edit#slide=id.p1' frameborder='0' allowfullscreen></iframe>
 
-  <!-- JavaScript kodları -->
-  <script>
-    // Cloudflare API endpoint'i
-    const apiUrl = 'https://api.cloudflare.com/client/v4/ips';
+<a href="newpage.html">Yeni Sayfa</a>
 
-    // Cloudflare API isteği
-    axios.get(apiUrl, {
-      headers: {
-        'Authorization': 'Bearer YOUR_API_TOKEN',  // Cloudflare API anahtarınız buraya gelecek
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      // API'den gelen veriyi HTML içinde gösterme
-      document.getElementById('response').innerText = JSON.stringify(response.data, null, 2);
-    })
-    .catch(error => {
-      // Hata durumunda hata mesajını gösterme
-      document.getElementById('response').innerText = 'Error fetching Cloudflare IPs: ' + error.message;
-    });
-  </script>
 </body>
 </html>
