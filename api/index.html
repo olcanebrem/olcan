@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Örneği</title>
+</head>
+<body>
+    <h1>API Örneği</h1>
+
+    <div id="result"></div>
+
+    <script>
+        // API endpoint ve istek oluşturma
+        const apiUrl = 'https://api.cloudflare.com/client/v4/ips';
+        
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // API'den gelen veriyi işleme
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            })
+            .catch(error => {
+                // Hata durumunda kullanıcıya bilgi verme
+                console.error('API isteği başarısız:', error);
+                const resultDiv = document.getElementById('result');
+                resultDiv.textContent = 'API isteği başarısız oldu.';
+            });
+    </script>
+</body>
+</html>
