@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // API endpoint (veri çekme)
-app.get('/api/data', (req, res) => {
+app.get('/api/get', (req, res) => {
   connection.query('SELECT * FROM users', (error, results) => {
     if (error) throw error;
     res.json(results);
@@ -34,7 +34,7 @@ app.get('/api/data', (req, res) => {
 });
 
 // API endpoint (veri ekleme)
-app.post('/api/add', (req, res) => {
+app.post('/api/post', (req, res) => {
   const { supplier_code, supplier_name, invoice_number, invoice_date, due_date, net_amount } = req.body;
   const query = 'INSERT INTO users (supplier_code, supplier_name, invoice_number, invoice_date, due_date, net_amount) VALUES (?, ?, ?, ?, ?, ?)';
   connection.query(query, [supplier_code, supplier_name, invoice_number, invoice_date, due_date, net_amount], (error, results) => {
